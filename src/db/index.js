@@ -6,19 +6,19 @@ const app=expreess()
 const conectDB=async ()=>{
     try{
        const connectionInstance= await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`)
-       console.log(` \n MongoDB connected !! ${connectionInstance}`)
+       console.log(` \n MongoDB connected !! ${connectionInstance.connection.host}`)
         app.on( "error",()=>{
             console.log("ERROR :",error)
             throw error
         })
 
         app.listen(process.env.PORT,()=>{
-            console.log(`app is listening on ${PORT}`)
+            console.log(`app is listening on ${process.env.PORT}`)
         })
 
     }
     catch (err){
-      console.log("MongonDB connection error : ",err)
+      console.log("MongonDB connection Failed : ",err)
       process.exit(1)
      
     }
